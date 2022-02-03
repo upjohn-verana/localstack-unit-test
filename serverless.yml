@@ -1,6 +1,5 @@
 service: LocalStackTesting
 
-
 provider:
   stackName: ${self:custom.stage}-${self:service}
   versionFunctions: false
