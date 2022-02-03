@@ -1,0 +1,17 @@
+validate: true
+stateMachines:
+  EpicPreProcessingStateMachine:
+    name: ${self:custom.stage}-Unit-Testing
+    definition:
+      Comment: "Testing localstack"
+      StartAt: Basic
+      States:
+        Basic:
+          Comment: "Basic lambda"
+          Type: Task
+          Resource:
+            Fn::GetAtt: [Basic, Arn]
+          Next: SUCCEED
+        SUCCEED:
+          Type: "Pass"
+          End: true

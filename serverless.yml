@@ -1,0 +1,84 @@
+service: LocalStackTesting
+
+provider:
+  stackName: ${self:custom.stage}-${self:service}
+  versionFunctions: false
+  name: aws
+  timeout: 200
+  runtime: python3.9
+  region: ${file(./config/${self:custom.stage}.yml):region}
+  logRetentionInDays: 30
+  iam:
+    role:
+      tags:
+      name: ${self:custom.stage}-${self:service}
+      statements:
+        - Effect: Allow
+          Action:
+            - "s3:List*"
+          Resource:
+            - "*"
+        - Effect: Allow
+          Action:
+            - "s3:DeleteObject"
+            - "s3:PutObject"
+            - "s3:GetObject"
+          Resource:
+            - "arn:aws:s3:::*"
+        - Effect: Allow
+          Action:
+            - "states:StartExecution"
+          Resource:
+            - "arn:aws:states:${aws:region}:${aws:accountId}:stateMachine:${self:stepFunctions.stateMachines.EpicPreProcessingStateMachine.name}"
+        - Effect: Allow
+          Action:
+            - "glue:GetJobRun"
+            - "glue:GlueJobRun"
+            - "glue:StartJobRun"
+          Resource:
+            - "arn:aws:glue:*:*:job/${self:custom.stage}*"
+
+  deploymentBucket:
+    name: ${file(./config/${self:custom.stage}.yml):deploy_bucket}
+  environment: ${file(./config/${self:custom.stage}.yml):env_vars}
+
+functions:
+  Basic:
+    handler: src/basic.run
+    description: Log hello
+    name: ${self:custom.stage}-${self:service}-Basic
+
+stepFunctions:
+  ${file(serverless/step_functions.yml)}
+
+package:
+  patterns:
+    - "!venv/**"
+    - "!.git/**"
+    - "!.github/**"
+    - "!.vscode/**"
+    - "!docker/**"
+    - "!node_modules/**"
+    - "!__pychache__/**"
+    - "!.pytest_cache/**"
+    - "!zz_notes/**"
+    - "!tests/**"
+    - "!terraform/**"
+    - "!test_json/**"
+    - "!stubs/**"
+    - "!lambda_layers/**"
+  individually: true
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline
+  - serverless-localstack
+  - serverless-step-functions
+
+custom:
+  stage: ${opt:stage, 'dev'}
+  pythonRequirements:
+    dockerizePip: non-linux
+  localstack:
+    stages:
+      local

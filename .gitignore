@@ -1,0 +1,58 @@
+node_modules/
+.envrc
+.serverless/
+.vscode/
+.DS_Store
+.idea/
+
+# run deck ignore
+requirements.txt
+
+__pycache__/
+
+.pytest_cache/
+zz_notes/
+
+*.zip
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform*
+*.pem
+crash.log
+*.tfvars
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json

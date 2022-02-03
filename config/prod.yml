@@ -1,0 +1,14 @@
+env_vars:
+  LOG_THRESHOLD: INFO
+  infra: prod
+  db_secret: ue1-prod-di-didb-ro
+  aws_account_id: 111077548247
+  region: "us-east-1"
+  cloudwatch_rule: "ue1-prod-pullWatcherEvent"
+  ENV: prod
+  glue_source_bucket: vh-master-ue1-prod-data-v1-0-0
+  glue_destination_bucket: vh-master-ue1-prod-data-lake
+  glue_job_name: prod_vh-dit-epic-data-preprocessing
+aws_account_id: 111077548247
+region: "us-east-1"
+deploy_bucket: vh-serverless-master-ue1

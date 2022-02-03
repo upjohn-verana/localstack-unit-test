@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "vh-dit-epic-processing"
+version = "0.1.0"
+description = ""
+authors = ["Chad Upjohn <chad.upjohn@veranahealth.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.9"
+psycopg2-binary = "~2.9.1"
+loguru = "^0.6.0"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.9.3"
+black = "^21.9b0"
+botocore = "1.20.100"
+boto3 = "1.17.100"
+pytest = "^=6.2.0"
+flake8 = "^3.9.2"
+pdbpp = "^0.10.3"
+pytest-assume = "^2.4.3"
+ipython = "^7.28.0"
+poetry = "^1.1.12"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+src_paths = ["tests"]
+multi_line_output=3
+include_trailing_comma="True"
+force_grid_wrap=0
+use_parentheses="True"
+line_length=120
+skip=".vscode, .tox, .git"
+default_section="THIRDPARTY"
+sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers -v"
+markers = ["dynamodb",
+           "unit_test",
+]
+testpaths = "tests"
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+  # Directories
+    \.eggs
+  | \.git
+  | \.vscode
+  | \.tox
+  | \.venv
+  | \.ropeproject
+  | build
+  | venv
+  | .*egg-info
+)/
+'''
+

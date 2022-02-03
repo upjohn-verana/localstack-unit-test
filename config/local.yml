@@ -1,0 +1,13 @@
+env_vars:
+  LOG_THRESHOLD: DEBUg
+  LOGURU_LEVEL: DEBUG
+  infra: dev
+  db_secret: ue1-dev-di-didb-ro
+  region: "us-east-1"
+  ENV: local
+  glue_source_bucket: data
+  glue_destination_bucket: data
+  glue_job_name: local_vh-dit-epic-data-preprocessing
+aws_account_id: 999999999999
+region: "us-east-1"
+deploy_bucket: vh-serverless-master-ue1
