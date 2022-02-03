@@ -7,10 +7,12 @@ stateMachines:
       StartAt: BasicLambda
       States:
         BasicLambda:
-          # Comment: "Basic lambda"
+          Comment: "Basic lambda"
           Type: Task
           Resource:
             Fn::GetAtt: [Basic, Arn]
+          ResultPath: $.basic
+          OutputPath: $
           Next: SUCCEED
         SUCCEED:
           Type: "Pass"
