@@ -24,7 +24,7 @@ provider:
             - "s3:PutObject"
             - "s3:GetObject"
           Resource:
-            - "arn:aws:s3:::*"
+            - "*"
         - Effect: Allow
           Action:
             - "states:StartExecution"

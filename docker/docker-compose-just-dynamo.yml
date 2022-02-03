@@ -3,7 +3,7 @@ version: "3.8"
 services:
   localstack:
     container_name: "localstack_dynamodb"
-    image: localstack/localstack:0.12.19
+    image: localstack/localstack:0.14.0
     ports:
       - "127.0.0.1:53:53"
       - "127.0.0.1:53:53/udp"
@@ -14,7 +14,7 @@ services:
       - SERVICES=dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions
       - DEBUG=${DEBUG- }
       - DATA_DIR=${DATA_DIR- }
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - LAMBDA_EXECUTOR=docker
       - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock

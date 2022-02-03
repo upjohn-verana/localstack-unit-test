@@ -4,10 +4,10 @@ stateMachines:
     name: ${self:custom.stage}-Unit-Testing
     definition:
       Comment: "Testing localstack"
-      StartAt: Basic
+      StartAt: BasicLambda
       States:
-        Basic:
-          Comment: "Basic lambda"
+        BasicLambda:
+          # Comment: "Basic lambda"
           Type: Task
           Resource:
             Fn::GetAtt: [Basic, Arn]

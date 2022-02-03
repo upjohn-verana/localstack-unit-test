@@ -1,8 +1,7 @@
 env_vars:
-  LOG_THRESHOLD: DEBUg
+  LOG_THRESHOLD: DEBUG
   LOGURU_LEVEL: DEBUG
   infra: dev
-  db_secret: ue1-dev-di-didb-ro
   region: "us-east-1"
   ENV: local
   glue_source_bucket: data

@@ -18,6 +18,9 @@ sls-step-function-invoke:
 
 sls-first-time-local: create-deploy-bucket sls-deploy-local
 
+stf-list-statemachines:
+    awslocal stepfunctions list-state-machines
+
 stf-list-executions arn:
     awslocal stepfunctions list-executions --state-machine-arn {{arn}}
 
