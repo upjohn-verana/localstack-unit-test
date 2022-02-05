@@ -1,8 +1,14 @@
 default:
     @just --list
 
-dynamo-up:
+localstack-up:
     docker compose -f ./docker/docker-compose-just-dynamo.yml up
+
+localstack-down:
+    docker compose -f ./docker/docker-compose-just-dynamo.yml down
+
+glue-run-job:
+    ./run_job.sh
 
 create-deploy-bucket:
     awslocal s3 mb s3://vh-serverless-master-ue1
