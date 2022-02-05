@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "localstack_dynamodb"
+    container_name: "localstack_testing"
     image: localstack/localstack:0.14.0
     ports:
       - "127.0.0.1:53:53"
