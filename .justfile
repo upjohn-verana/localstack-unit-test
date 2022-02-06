@@ -1,8 +1,8 @@
 default:
     @just --list
 
-dynamo-up:
-    docker compose -f ./docker/docker-compose-just-dynamo.yml up
+localstack-up:
+    docker compose -f ./docker/docker-compose-localstack.yml up
 
 create-deploy-bucket:
     awslocal s3 mb s3://vh-serverless-master-ue1
