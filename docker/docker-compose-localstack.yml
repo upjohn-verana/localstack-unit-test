@@ -11,7 +11,7 @@ services:
       - "4566:4566"
       - "4571:4571"
     environment:
-      - SERVICES=dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions,glue,sns,es,sqs,firehose
+      - SERVICES=appsync,sns,es,sqs,firehose,dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions,glue
       # - DEBUG=${DEBUG- }
       - DEBUG=1
       - DATA_DIR=${DATA_DIR- }
