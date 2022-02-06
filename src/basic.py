@@ -1,6 +1,8 @@
+# from loguru import logger
+import logging
 import os
 
-from loguru import logger
+logger = logging
 
 
 def run(event, context):

@@ -4,6 +4,9 @@ default:
 localstack-up:
     docker compose -f ./docker/docker-compose-localstack.yml up
 
+localstack-down:
+    docker compose -f ./docker/docker-compose-localstack.yml down
+
 create-deploy-bucket:
     awslocal s3 mb s3://vh-serverless-master-ue1
 
