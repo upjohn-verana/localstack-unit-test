@@ -11,16 +11,16 @@ services:
       - "4566:4566"
       - "4571:4571"
     environment:
-      - SERVICES=dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions
-      - DEBUG=${DEBUG- }
+      - SERVICES=dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions,glue,sns,es,sqs,firehose
+      # - DEBUG=${DEBUG- }
+      - DEBUG=1
       - DATA_DIR=${DATA_DIR- }
       - LAMBDA_EXECUTOR=docker
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
       - HOST_TMP_FOLDER="${TMPDIR:-/tmp}/localstack"
       - DEFAULT_REGION=us-east-1
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
     volumes:
       - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
 
