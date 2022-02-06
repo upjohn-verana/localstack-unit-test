@@ -2,7 +2,7 @@ default:
     @just --list
 
 localstack-up:
-    docker compose -f ./docker/docker-compose-just-dynamo.yml up
+    docker compose -f ./docker/docker-compose-localstack.yml up
 
 localstack-down:
     docker compose -f ./docker/docker-compose-just-dynamo.yml down
