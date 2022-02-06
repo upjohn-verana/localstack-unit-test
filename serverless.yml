@@ -5,7 +5,7 @@ provider:
   versionFunctions: false
   name: aws
   timeout: 200
-  runtime: python3.8
+  runtime: python3.9
   region: ${file(./config/${self:custom.stage}.yml):region}
   logRetentionInDays: 30
   iam:
