@@ -8,16 +8,6 @@ echo Putting PySpark script to test S3 bucket ...
 awslocal s3 mb s3://$BUCKET
 awslocal s3 cp src/spark_job.py $S3_URL
 
-db_port=$(awslocal rds create-db-cluster --db-cluster-identifier c1 --engine aurora-postgresql --database-name test | jq -r .DBCluster.Port)
-echo Using local RDS database on port $db_port ...
-
-echo Creating Glue databases and tables ...
-awslocal glue create-database --database-input '{"Name":"legislators"}'
-awslocal glue create-table --database legislators \
-  --table-input '{"Name":"persons_json", "Parameters": {"connectionName": "c1"}, "StorageDescriptor": {"Location": "test.persons"}}'
-awslocal glue create-connection \
-  --connection-input '{"Name":"c1", "ConnectionType": "JDBC", "ConnectionProperties": {"USERNAME": "test", "PASSWORD": "test", "JDBC_CONNECTION_URL": "jdbc:postgresql://localhost.localstack.cloud:'$db_port'"}}'
-
 echo Starting Glue job from PySpark script ...
 awslocal glue create-job --name $JOB_NAME --role r1 \
   --command '{"Name": "glueetl", "ScriptLocation": "'$S3_URL'"}' \

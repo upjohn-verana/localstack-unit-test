@@ -32,7 +32,6 @@ def create_glue_job():
                 "PythonVersion": "3",
             },
             DefaultArguments={
-                # "--TempDir": "s3://lf-poc-vh-raw/glue_job/temp/",
                 "--enable-continuous-cloudwatch-log": "true",
                 "--enable-continuous-log-filter": "false",
                 "--enable-metrics": "",
@@ -57,27 +56,8 @@ def create_glue_job():
 
 def run_glue_job():
     glue = get_glue_client()
-    result = glue.start_job_run(
-        JobName=glue_job,
-        # Arguments={
-        #     "--vh_deployment_id": "c1d5so4idtlf4cam0l4g",
-        #     "--vh_pull_id": "c7aes4uv0000qa4oj9vg",
-        #     "--s3_uri": "s3://vh-master-ue1-dev-data-lake/raw/ra_data/c1d5so4idtlf4cam0l4g/c7aes4uv0000qa4oj9vg",
-        #     # "--vh_pull_id": "temper",
-        #     # "--s3_uri": "s3://vh-master-ue1-dev-data-lake/raw/ra_data/c1d5so4idtlf4cam0l4g/temper",
-        #     "--s3_bucket": "vh-master-ue1-dev-data-lake",
-        # },
-    )
-
-    # status = glue.get_job_run(JobName=glue_job, RunId=result["JobRunId"])
-    # while status["JobRun"]["JobRunState"] == "RUNNING":
-    #     logger.info("still running")
-    #     time.sleep(10)
-    #     status = glue.get_job_run(JobName=glue_job, RunId=result["JobRunId"])
-
-    # logger.info(f"Job: {status['JobRun']['JobRunState']}")
+    result = glue.start_job_run(JobName=glue_job)
     logger.info(result)
-    # logger.info("Done")
 
 
 if __name__ == "__main__":
