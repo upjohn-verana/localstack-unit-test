@@ -5,7 +5,7 @@ localstack-up:
     docker compose -f ./docker/docker-compose-localstack.yml up
 
 localstack-down:
-    docker compose -f ./docker/docker-compose-just-dynamo.yml down
+    docker compose -f ./docker/docker-compose-localstack.yml down
 
 glue-run-job:
     ./run_job.sh

@@ -1,6 +1,8 @@
 import os
 import sys
 
+from loguru import logger
+
 # from awsglue.transforms import Join
 # from awsglue.utils import getResolvedOptions
 # from pyspark.context import SparkContext
@@ -10,7 +12,9 @@ import sys
 
 
 def main():
+    logger.info("what")
     print("start")
+    print("this is a whol bunch of things")
     # glueContext = GlueContext(SparkContext.getOrCreate())
 
     # # catalog: database and table names

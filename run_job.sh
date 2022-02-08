@@ -20,8 +20,9 @@ awslocal glue create-connection \
 
 echo Starting Glue job from PySpark script ...
 awslocal glue create-job --name $JOB_NAME --role r1 \
-  --command '{"Name": "pythonscript", "ScriptLocation": "'$S3_URL'"}' \
-  --connections '{"Connections": ["c1"]}'
+  --command '{"Name": "glueetl", "ScriptLocation": "'$S3_URL'"}' \
+  --connections '{"Connections": ["c1"]}'\
+  --default-arguments '{"--additional-python-modules": "loguru==0.6.0"}'
 run_id=$(awslocal glue start-job-run --job-name $JOB_NAME | jq -r .JobRunId)
 
 state=$(awslocal glue get-job-run --job-name $JOB_NAME --run-id $run_id | jq -r .JobRun.JobRunState)
