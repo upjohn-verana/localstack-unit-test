@@ -24,12 +24,12 @@ sls-first-time-local: create-deploy-bucket sls-deploy-local
 stf-list-statemachines:
     awslocal stepfunctions list-state-machines
 
-stf-list-executions arn:
-    awslocal stepfunctions list-executions --state-machine-arn {{arn}}
+stf-list-executions state-machine-name:
+    awslocal stepfunctions list-executions --state-machine-arn arn:aws:states:us-east-1:000000000000:stateMachine:{{state-machine-name}}
 
-stf-describe-execution arn:
-    awslocal stepfunctions describe-execution --execution-arn {{arn}}
+stf-execution-state state-machine-name execution-id:
+    awslocal stepfunctions describe-execution --execution-arn arn:aws:states:us-east-1:000000000000:execution:{{state-machine-name}}:{{execution-id}}
 
-stf-execution-history arn:
-    awslocal stepfunctions get-execution-history --execution-arn {{arn}}
+stf-execution-history state-machine-name execution-id:
+    awslocal stepfunctions get-execution-history --execution-arn arn:aws:states:us-east-1:000000000000:execution:{{state-machine-name}}:{{execution-id}}
 
