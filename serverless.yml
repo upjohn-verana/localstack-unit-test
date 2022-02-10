@@ -48,6 +48,27 @@ functions:
     description: Log hello
     name: ${self:custom.stage}-${self:service}-Basic
 
+resources:
+  Resources:
+    EpicIngestionDynamoTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: demo-dynamo-db
+        AttributeDefinitions:
+          - AttributeName: ingestion_id
+            AttributeType: S
+          - AttributeName: delivery_date
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ingestion_id
+            KeyType: HASH
+          - AttributeName: delivery_date
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+  Outputs:
+    DemoDynamoArn:
+      Value: "arn:aws:states:${aws:region}:${aws:accountId}:stateMachine:${self:stepFunctions.stateMachines.EpicPreProcessingStateMachine.name}"
+
 stepFunctions:
   ${file(serverless/step_functions.yml)}
 

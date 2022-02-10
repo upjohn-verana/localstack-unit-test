@@ -13,6 +13,17 @@ stateMachines:
             Fn::GetAtt: [Basic, Arn]
           ResultPath: $.basic
           OutputPath: $
+          Next: InsertRecord
+        InsertRecord:
+          Type: Task
+          Resource: "arn:aws:states:::dynamodb:putItem"
+          Parameters:
+            TableName: demo-dynamo-db
+            Item:
+              ingestion_id:
+                S.$: $$.State.EnteredTime
+              delivery_date:
+                S.$: $.delivery_date
           Next: SUCCEED
         SUCCEED:
           Type: "Pass"
