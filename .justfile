@@ -19,7 +19,7 @@ sls-invoke-local:
 sls-step-function-invoke:
     SLS_DEBUG=* sls invoke stepf --name EpicPreProcessingStateMachine --stage local --data '{"ehr_connection_name": "epic", "delivery_date": "2021-09-01", "ingestion_id": "c25drn4idtlb8j6ojah0"}'
 
-sls-first-time-local: create-deploy-bucket sls-deploy-local
+sls-full-deploy: create-deploy-bucket sls-deploy-local
 
 stf-list-statemachines:
     awslocal stepfunctions list-state-machines
