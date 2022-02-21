@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "localstack_testing"
+    container_name: "localstack_main"
     image: localstack/localstack:0.14.0
     ports:
       - "127.0.0.1:53:53"
@@ -12,7 +12,7 @@ services:
       - "4571:4571"
     environment:
       - SERVICES=appsync,sns,es,sqs,firehose,dynamodb,s3,cloudformation,sts,logs,iam,lambda,ssm,stepfunctions,glue
-      - DEBUG=${DEBUG:-1}
+      - DEBUG=${DEBUG-:0}
       - DATA_DIR=${DATA_DIR- }
       - LAMBDA_EXECUTOR=docker
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
@@ -20,6 +20,7 @@ services:
       - HOST_TMP_FOLDER="${TMPDIR:-/tmp}/localstack"
       - DEFAULT_REGION=us-east-1
       - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
+      - DNS_ADDRESS=0
     volumes:
       - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
