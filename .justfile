@@ -6,6 +6,7 @@ localstack-up:
 
 localstack-down:
     docker compose -f ./docker/docker-compose-localstack.yml down
+    docker stop localstack_bigdata
 
 glue-run-job:
     ./run_job.sh
