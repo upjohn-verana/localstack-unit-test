@@ -1,6 +1,9 @@
 default:
     @just --list
 
+download_aws_glue_libs:
+    ./src/aws_glue_libs.sh
+
 localstack-up:
     docker compose -f ./docker/docker-compose-localstack.yml up
 
