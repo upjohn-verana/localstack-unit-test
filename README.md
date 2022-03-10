@@ -11,8 +11,7 @@ The repo makes use of `just`.  You can `brew install just` to get the recipes in
 ## Branches
 
 master: basic lambda running from a stepfnuction
-run_glue_in_container: glue job running in localstack docker container
-run_lambda_test_of_calling_glue: run the glue job from a stepfunction
+run_glue_in_container: glue job running in localstack docker container.  Note- the glue job fails.  The readme in that branch has more information.
 
 ## Basic Usage
 
